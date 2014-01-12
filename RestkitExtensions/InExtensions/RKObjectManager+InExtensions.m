@@ -20,8 +20,6 @@
 #define kMappingRoute @"route"
 #define kHTTPMethod @"method"
 
-// TODO: Error descriptor should be part of definitions.
-
 @implementation RKObjectManager (InExtensions)
 
 - (void)loadMappingsFromDictionary:(NSDictionary *)mappingInfo
@@ -42,17 +40,6 @@
                                                                                              method:method];
          [self addRequestDescriptor:requestDescriptor];
      }];
-    
-	// Error Descriptor
-//	RKObjectMapping *errorMapping = [RKObjectMapping objectMappingForClass:[RKErrorMessage class]];
-//	RKResponseDescriptor *errorDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:errorMapping
-//	                                                                                     method:RKRequestMethodAny
-//	                                                                                pathPattern:nil
-//	                                                                                    keyPath:nil
-//	                                                                                statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassClientError)];
-//    
-//	[self addResponseDescriptor:errorDescriptor];
-
     
     // Response Descriptors
     NSDictionary* responseDescriptors = [mappingInfo valueForKey:kResponseMapping];
