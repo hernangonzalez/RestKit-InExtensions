@@ -1,4 +1,35 @@
-RestKit-InExtensions
-====================
+# RestKit Extensions
 
-Extensions to help your RESTkit code be a bit more OOP.
+These are a set of extensions designed to help you get your networking code a bit more OOP.
+
+Hope it helps ;)
+
+
+Sample Usage
+============
+
+
+// Create your description file
+[TODO: add sample]
+
+
+// Load the info
+```  objective-c
+    // Load our mapping info.
+    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"modelMapping" ofType:@"plist"];
+    NSDictionary* dict  = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    [objectManager loadMappingsFromDictionary:dict];
+```
+
+
+// Get our objects
+```  objective-c
+    // GET Objects
+    RKTUserStatus* userStatus = [[RKTUserStatus alloc] init];
+    [userStatus setUsername:@"RestKit"];
+    [objectManager getObject:userStatus
+                        path:nil
+                  parameters:nil
+                     success:successBlock
+                     failure:errorBlock];
+```

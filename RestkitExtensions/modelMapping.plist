@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>response</key>
+	<dict>
+		<key>RKTUser</key>
+		<dict>
+			<key>attributeFromDictionary</key>
+			<dict>
+				<key>id</key>
+				<string>userID</string>
+				<key>screen_name</key>
+				<string>screenName</string>
+				<key>name</key>
+				<string>name</string>
+			</dict>
+		</dict>
+		<key>RKTweet</key>
+		<dict>
+			<key>attributeFromDictionary</key>
+			<dict>
+				<key>id</key>
+				<string>statusID</string>
+				<key>text</key>
+				<string>text</string>
+				<key>url</key>
+				<string>urlString</string>
+				<key>in_reply_to_screen_name</key>
+				<string>inReplyToScreenName</string>
+				<key>favorited</key>
+				<string>isFavorited</string>
+			</dict>
+			<key>relationship</key>
+			<array>
+				<dict>
+					<key>fromKeyPath</key>
+					<string>user</string>
+					<key>toKeyPath</key>
+					<string>user</string>
+					<key>classMapping</key>
+					<string>RKTUser</string>
+				</dict>
+			</array>
+		</dict>
+		<key>RKErrorMessage</key>
+		<dict>
+			<key>statusCode</key>
+			<integer>400</integer>
+		</dict>
+	</dict>
+	<key>request</key>
+	<dict/>
+	<key>routes</key>
+	<dict>
+		<key>RKTUserStatus</key>
+		<dict>
+			<key>route</key>
+			<string>/status/user_timeline/:username</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
