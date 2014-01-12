@@ -5,13 +5,18 @@ These are a set of extensions designed to help you get your networking code a bi
 Hope it helps ;)
 
 
+TODO
+====
+
+ * Expand examples.
+
+
 Sample Usage
 ============
 
 
 // Create your description file
-[TODO: add sample]
-
+Please look at the sample file.
 
 // Load the info
 ```  objective-c
