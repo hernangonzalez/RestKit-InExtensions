@@ -21,6 +21,7 @@
 		77B20F7118818B7600D76ECE /* modelMapping.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77B20F7018818B7600D76ECE /* modelMapping.plist */; };
 		77B20F7A1881B0B200D76ECE /* RKTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B20F771881B0B200D76ECE /* RKTUser.m */; };
 		77B20F7B1881B0B200D76ECE /* RKTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B20F791881B0B200D76ECE /* RKTweet.m */; };
+		77B870EE18A3CD8400325465 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 77B870ED18A3CD8400325465 /* README.md */; };
 		A98A92BCBDCA4FDA85A6AD98 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 850A697612B5499CBB6C39A8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		77B20F771881B0B200D76ECE /* RKTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKTUser.m; sourceTree = "<group>"; };
 		77B20F781881B0B200D76ECE /* RKTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKTweet.h; sourceTree = "<group>"; };
 		77B20F791881B0B200D76ECE /* RKTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKTweet.m; sourceTree = "<group>"; };
+		77B870ED18A3CD8400325465 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		77BF586818830EC80043CBAC /* RestKit+InExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RestKit+InExtensions.h"; sourceTree = "<group>"; };
 		850A697612B5499CBB6C39A8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF8DC5E3C8E0416C9C2759CB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 		771B47C0188176130082C3C7 = {
 			isa = PBXGroup;
 			children = (
+				77B870ED18A3CD8400325465 /* README.md */,
 				77B20F6518817B8900D76ECE /* InExtensions */,
 				771B47D2188176140082C3C7 /* RestkitExtensions */,
 				771B47CB188176140082C3C7 /* Frameworks */,
@@ -208,6 +211,7 @@
 			files = (
 				771B47E5188176140082C3C7 /* Images.xcassets in Resources */,
 				77B20F7118818B7600D76ECE /* modelMapping.plist in Resources */,
+				77B870EE18A3CD8400325465 /* README.md in Resources */,
 				771B47D7188176140082C3C7 /* InfoPlist.strings in Resources */,
 				771B47E0188176140082C3C7 /* Main.storyboard in Resources */,
 			);
