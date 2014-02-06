@@ -24,7 +24,7 @@ Please look at the [sample file](RestkitExtensions/modelMapping.plist).
 ```
 
 
-// Get our objects
+####Get our objects
 ```  objective-c
     // GET Objects
     RKTUserStatus* userStatus = [[RKTUserStatus alloc] init];
