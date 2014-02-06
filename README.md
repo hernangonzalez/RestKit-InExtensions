@@ -1,19 +1,16 @@
 # RestKit Extensions
 
-These are a set of extensions designed to help you get your networking code a bit more OOP.
+These categories are a set of extensions designed to help you get your networking code a bit more OOP.
 
 Hope it helps ;)
 
 
-TODO
-====
 
- * Expand examples.
+##Sample Plist
+![Screenshot](http://cl.ly/image/0a252A3V3w0V/Screen%20Shot%202014-02-06%20at%2011.05.42%20AM.png "Example of model plist")
 
 
-Sample Usage
-============
-
+##Sample Usage
 
 // Create your description file <br>
 Please look at the sample file.
@@ -38,3 +35,7 @@ Please look at the sample file.
                      success:successBlock
                      failure:errorBlock];
 ```
+
+
+##License
+MIT License
