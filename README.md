@@ -12,10 +12,10 @@ Hope it helps ;)
 
 ##Sample Usage
 
-// Create your description file <br>
-Please look at the sample file.
+####Create your description file <br>
+Please look at the [sample file](RestkitExtensions/modelMapping.plist).
 
-// Load the info
+####Load the info
 ```  objective-c
     // Load our mapping info.
     NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"modelMapping" ofType:@"plist"];
