@@ -42,5 +42,5 @@ This project is licensed under the terms of the MIT License. Please see the [LIC
 
 ## Credits
 
-RestKit-InExtensions is brought to you by [Hernan Gonzalez](http://twitter.com/indebateam) and the Indeba (http://www.indeba.com) team.
+RestKit-InExtensions is brought to you by the [Indeba Team] (http://www.indeba.com).
 
