@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'RestKit-InExtensions'
-  spec.version      = '0.1.1'
+  spec.version      = '0.1.0'
   spec.license      = 'MIT'
   spec.summary      = 'Helpers to use RestKit with less code.'
   spec.homepage     = 'https://github.com/hernangonzalez/RestKit-InExtensions'
