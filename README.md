@@ -36,7 +36,6 @@ Please look at the sample file.
                      failure:errorBlock];
 ```
 
-
 ## License
 
 This project is licensed under the terms of the MIT License. Please see the [LICENSE](LICENSE) file for full details.
