@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'RestKit-InExtensions'
-  spec.version      = '0.1.0'
+  spec.version      = '0.1.1'
   spec.license      = 'MIT'
   spec.summary      = 'Helpers to use RestKit with less code.'
   spec.homepage     = 'https://github.com/hernangonzalez/RestKit-InExtensions'
@@ -10,4 +10,5 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   spec.ios.deployment_target = '6.0'
   spec.dependency 'RestKit' , '~> 0.22.0'
+  spec.ios.frameworks = 'MobileCoreServices', 'SystemConfiguration'
 end
