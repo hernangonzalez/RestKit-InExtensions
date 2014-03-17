@@ -17,9 +17,9 @@ NSString *const FCMappingToKeyPath = @"toKeyPath";
 
 @implementation RKObjectMapping (MappingPrivate)
 
-- (void)mapAttributesUsingInfo:(NSDictionary *)mappingInfo
+- (void)mapAttributesForClass:(Class)class usingInfo:(NSDictionary *)mappingInfo
 {
-    NSString* targetName = NSStringFromClass([self objectClass]);
+    NSString* targetName = NSStringFromClass(class);
     NSDictionary* dictionary = [mappingInfo objectForKey:targetName];
     
 	NSDictionary *mappingsFromDictionary =  [dictionary valueForKey:FCMappingAttributeFromDictionary];
@@ -72,16 +72,16 @@ NSString *const FCMappingToKeyPath = @"toKeyPath";
     NSParameterAssert(dict);
     NSParameterAssert(class);
     RKObjectMapping *objectMapping = [RKObjectMapping mappingForClass:class];
-    [objectMapping mapAttributesUsingInfo:dict];
+    [objectMapping mapAttributesForClass:class usingInfo:dict];
 	return objectMapping;
 
 }
 
-+ (RKObjectMapping *)requestMappingFromDictionary:(NSDictionary *)dict
++ (RKObjectMapping *)requestMappingForClass:(Class)class requestInfo:(NSDictionary *)dict
 {
 	NSParameterAssert(dict);
 	RKObjectMapping *objectMapping = [RKObjectMapping requestMapping];
-	[objectMapping mapAttributesUsingInfo:dict];
+	[objectMapping mapAttributesForClass:class usingInfo:dict];
 	return objectMapping;
 }
 

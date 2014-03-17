@@ -10,7 +10,7 @@
 #import <RKErrorMessage.h>
 #import <RestKit/Network.h>
 
-#define kRequestMapping @"requests"
+#define kRequestMapping @"request"
 #define kResponseMapping @"response"
 #define kStatusCode @"statusCode"
 #define kMappingClass @"class"
@@ -31,7 +31,7 @@
 	[requestMappings enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *info, BOOL *stop)
      {
          Class mapClass = NSClassFromString(key);
-         RKObjectMapping *requestMapping = [RKObjectMapping requestMappingFromDictionary:info];
+         RKObjectMapping *requestMapping = [RKObjectMapping requestMappingForClass:mapClass requestInfo:requestMappings];
          NSString* httpMethod = [info objectForKey:kHTTPMethod];
          RKRequestMethod method = (httpMethod)? RKRequestMethodFromString(httpMethod) : RKRequestMethodAny;
          RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:requestMapping

@@ -16,6 +16,6 @@
 /**
  otherwise return nil
  */
-+ (RKObjectMapping *)requestMappingFromDictionary:(NSDictionary *)dict;
-
++ (RKObjectMapping *)requestMappingForClass:(Class)requestClass
+                                requestInfo:(NSDictionary *)dict;
 @end
