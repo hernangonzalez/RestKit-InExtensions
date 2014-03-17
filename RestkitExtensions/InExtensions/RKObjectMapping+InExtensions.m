@@ -17,9 +17,9 @@ NSString *const FCMappingToKeyPath = @"toKeyPath";
 
 @implementation RKObjectMapping (MappingPrivate)
 
-- (void)mapAttributesForClass:(Class)class usingInfo:(NSDictionary *)mappingInfo
+- (void)mapAttributesForClass:(Class)targetClass usingInfo:(NSDictionary *)mappingInfo isRequest:(BOOL)isRequest
 {
-    NSString* targetName = NSStringFromClass(class);
+    NSString* targetName = NSStringFromClass(targetClass);
     NSDictionary* dictionary = [mappingInfo objectForKey:targetName];
     
 	NSDictionary *mappingsFromDictionary =  [dictionary valueForKey:FCMappingAttributeFromDictionary];
@@ -37,11 +37,23 @@ NSString *const FCMappingToKeyPath = @"toKeyPath";
 	for (NSDictionary *relationship in [dictionary valueForKey:FCMappingRelationship])
 	{
 		Class relationshipClass = NSClassFromString([relationship valueForKey:FCMappingClassMapping]);
-        
-		// Prevent a loop by checking the target class.
-		RKObjectMapping *relationshipObjMapping = (relationshipClass == [self objectClass]) ? self
-                                                                                            : [RKObjectMapping responseMappingForClass:relationshipClass
-                                                                                                                          responseInfo:mappingInfo];
+
+        // Prevent a loop by checking the target class.
+		RKObjectMapping *relationshipObjMapping = nil;
+        if (relationshipClass == targetClass)
+        {
+            relationshipObjMapping = self;
+        }
+        else  if (isRequest)
+        {
+            relationshipObjMapping = [RKObjectMapping requestMappingForClass:relationshipClass
+                                                                 requestInfo:mappingInfo];;
+        }
+        else
+        {
+            relationshipObjMapping = [RKObjectMapping responseMappingForClass:relationshipClass
+                                                                 responseInfo:mappingInfo];
+        }
         
 		RKRelationshipMapping *relationshipMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:[relationship valueForKey:FCMappingFromKeyPath]
 		                                                                                         toKeyPath:[relationship valueForKey:FCMappingToKeyPath]
@@ -72,7 +84,7 @@ NSString *const FCMappingToKeyPath = @"toKeyPath";
     NSParameterAssert(dict);
     NSParameterAssert(class);
     RKObjectMapping *objectMapping = [RKObjectMapping mappingForClass:class];
-    [objectMapping mapAttributesForClass:class usingInfo:dict];
+    [objectMapping mapAttributesForClass:class usingInfo:dict isRequest:NO];
 	return objectMapping;
 
 }
@@ -81,7 +93,7 @@ NSString *const FCMappingToKeyPath = @"toKeyPath";
 {
 	NSParameterAssert(dict);
 	RKObjectMapping *objectMapping = [RKObjectMapping requestMapping];
-	[objectMapping mapAttributesForClass:class usingInfo:dict];
+	[objectMapping mapAttributesForClass:class usingInfo:dict isRequest:YES];
 	return objectMapping;
 }
 
