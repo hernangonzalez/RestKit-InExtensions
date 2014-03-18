@@ -1,5 +1,7 @@
 # RestKit Extensions
 
+[![Build Status](https://travis-ci.org/CocoaPods/Specs.png?branch=master)](https://travis-ci.org/CocoaPods/Specs)
+
 These categories are a set of extensions designed to help you get your networking code a bit more OOP.
 
 Hope it helps ;)
