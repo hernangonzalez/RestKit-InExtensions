@@ -7,7 +7,7 @@ Hope it helps ;)
 
 
 ##Sample Plist
-![Screenshot](http://cl.ly/image/0a252A3V3w0V/Screen%20Shot%202014-02-06%20at%2011.05.42%20AM.png "Example of model plist")
+![Screenshot](http://cl.ly/image/2h1c1c2Y3g36/Screen%20Shot%202014-03-18%20at%205.27.18%20PM.png "Example of model plist")
 
 
 ##Sample Usage
@@ -34,6 +34,23 @@ Please look at the [sample file](RestkitExtensions/modelMapping.plist).
                   parameters:nil
                      success:successBlock
                      failure:errorBlock];
+```
+
+#### Post example
+``` objective-c
+    // POST a tweet
+    RKTweet* tweet = [_tweets lastObject];
+    RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    [objectManager postObject:tweet
+                         path:nil
+                   parameters:nil
+                      success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                      } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                          // This will fail, it is only here
+                          // to demonstrate that we can easily post an object
+                          // and the reverse mapping is resolved by the extension.
+                      }];
+
 ```
 
 ## License
