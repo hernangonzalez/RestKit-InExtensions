@@ -15,6 +15,11 @@
     return [NSString stringWithFormat:@"%@ (ID: %@)", self.text, self.statusID];
 }
 
+- (NSURL*)url
+{
+    return _url? _url : [NSURL URLWithString:@"http://www.indeba.com"];
+}
+
 @end
 
 

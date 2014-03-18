@@ -25,7 +25,7 @@
 				<key>text</key>
 				<string>text</string>
 				<key>url</key>
-				<string>urlString</string>
+				<string>url</string>
 				<key>in_reply_to_screen_name</key>
 				<string>inReplyToScreenName</string>
 				<key>favorited</key>
@@ -58,13 +58,23 @@
 		</dict>
 	</array>
 	<key>request</key>
-	<array/>
+	<array>
+		<dict>
+			<key>class</key>
+			<string>RKTweet</string>
+		</dict>
+	</array>
 	<key>routes</key>
 	<dict>
 		<key>RKTUserStatus</key>
 		<dict>
 			<key>route</key>
 			<string>/status/user_timeline/:username</string>
+		</dict>
+		<key>RKTweet</key>
+		<dict>
+			<key>route</key>
+			<string>/trash</string>
 		</dict>
 	</dict>
 </dict>

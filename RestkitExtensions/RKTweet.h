@@ -28,7 +28,7 @@
 /**
  * String version of the URL associated with the Status
  */
-@property (nonatomic, copy) NSString *urlString;
+@property (nonatomic, copy) NSURL *url;
 
 /**
  * The screen name of the User this Status was in response to

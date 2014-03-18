@@ -33,6 +33,10 @@
         NSArray* statuses = [mappingResult array];
         [weakSelf setTweets:statuses];
         [[weakSelf tableView] reloadData];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf postTweet];
+        });
     };
     
     // Error
@@ -58,6 +62,24 @@
 
 }
 
+- (void)postTweet
+{
+    
+    // Load the object model via RestKit
+    RKTweet* tweet = [_tweets lastObject];
+
+    RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    [objectManager postObject:tweet
+                         path:nil
+                   parameters:nil
+                      success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                      } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                          // This will fail, it is only here
+                          // to demonstrate that we can easily post an object
+                          // and the reverse mapping is resolved by the extension.
+                      }];
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -79,7 +101,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RKTweet* tweet = [_tweets objectAtIndex:[indexPath row]];
-    NSURL* tweetURL = [NSURL URLWithString:[tweet urlString]];
+    NSURL* tweetURL = [tweet url];
     if ([[UIApplication sharedApplication] canOpenURL:tweetURL])
     {
         [[UIApplication sharedApplication] openURL:tweetURL];
