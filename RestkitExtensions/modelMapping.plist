@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>response</key>
+	<key>mapping</key>
 	<dict>
 		<key>RKTUser</key>
 		<dict>
@@ -43,14 +43,22 @@
 				</dict>
 			</array>
 		</dict>
-		<key>RKErrorMessage</key>
+	</dict>
+	<key>response</key>
+	<array>
 		<dict>
 			<key>statusCode</key>
 			<integer>400</integer>
+			<key>class</key>
+			<string>RKErrorMessage</string>
 		</dict>
-	</dict>
+		<dict>
+			<key>class</key>
+			<string>RKTweet</string>
+		</dict>
+	</array>
 	<key>request</key>
-	<dict/>
+	<array/>
 	<key>routes</key>
 	<dict>
 		<key>RKTUserStatus</key>

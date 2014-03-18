@@ -25,6 +25,14 @@ NSString *const FCMappingToKeyPath = @"toKeyPath";
 	NSDictionary *mappingsFromDictionary =  [dictionary valueForKey:FCMappingAttributeFromDictionary];
 	if (mappingsFromDictionary != nil)
 	{
+        // Invert mappings in case of requests.
+        if (isRequest)
+        {
+            NSDictionary* inverseMapping = [NSDictionary dictionaryWithObjects:[mappingsFromDictionary allKeys]
+                                                                       forKeys:[mappingsFromDictionary allValues]];
+            mappingsFromDictionary = inverseMapping;
+        }
+        
 		[self addAttributeMappingsFromDictionary:mappingsFromDictionary];
 	}
     
@@ -47,39 +55,28 @@ NSString *const FCMappingToKeyPath = @"toKeyPath";
         else  if (isRequest)
         {
             relationshipObjMapping = [RKObjectMapping requestMappingForClass:relationshipClass
-                                                                 requestInfo:mappingInfo];;
+                                                                 mappingInfo:mappingInfo];;
         }
         else
         {
             relationshipObjMapping = [RKObjectMapping responseMappingForClass:relationshipClass
-                                                                 responseInfo:mappingInfo];
+                                                                 mappingInfo:mappingInfo];
         }
         
-		RKRelationshipMapping *relationshipMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:[relationship valueForKey:FCMappingFromKeyPath]
-		                                                                                         toKeyPath:[relationship valueForKey:FCMappingToKeyPath]
+        NSString* fromKeyPath = [relationship valueForKey:FCMappingFromKeyPath];
+        NSString* toKeyPath = [relationship valueForKey:FCMappingToKeyPath];
+		RKRelationshipMapping *relationshipMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:isRequest? toKeyPath : fromKeyPath
+		                                                                                         toKeyPath:isRequest? fromKeyPath : toKeyPath
 		                                                                                       withMapping:relationshipObjMapping];
 		[self addPropertyMapping:relationshipMapping];
 	}
-}
-
-+ (RKObjectMapping *)objectMapping:(Class)remoteClass fromClassMappingDictionaries:(NSDictionary *)classMappingDictionaries
-{
-	RKObjectMapping *objectMapping = nil;
-	NSString *className = NSStringFromClass(remoteClass);
-	NSDictionary *classMappingDictionary = [classMappingDictionaries valueForKey:className];
-	if (classMappingDictionary != nil)
-	{
-		objectMapping = [RKObjectMapping mappingForClass:remoteClass];
-		[objectMapping addAttributeMappingsFromDictionary:classMappingDictionary];
-	}
-	return objectMapping;
 }
 
 @end
 
 @implementation RKObjectMapping (Mapping)
 
-+ (RKObjectMapping*)responseMappingForClass:(Class)class responseInfo:(NSDictionary *)dict
++ (RKObjectMapping*)responseMappingForClass:(Class)class mappingInfo:(NSDictionary *)dict
 {
     NSParameterAssert(dict);
     NSParameterAssert(class);
@@ -89,9 +86,10 @@ NSString *const FCMappingToKeyPath = @"toKeyPath";
 
 }
 
-+ (RKObjectMapping *)requestMappingForClass:(Class)class requestInfo:(NSDictionary *)dict
++ (RKObjectMapping *)requestMappingForClass:(Class)class mappingInfo:(NSDictionary *)dict
 {
 	NSParameterAssert(dict);
+    NSParameterAssert(class);
 	RKObjectMapping *objectMapping = [RKObjectMapping requestMapping];
 	[objectMapping mapAttributesForClass:class usingInfo:dict isRequest:YES];
 	return objectMapping;

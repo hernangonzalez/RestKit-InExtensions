@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77198B4918D8C46400D6E406 /* RKValueTransformer+InExtenstions.m in Sources */ = {isa = PBXBuildFile; fileRef = 77198B4818D8C46400D6E406 /* RKValueTransformer+InExtenstions.m */; };
 		771B47CD188176140082C3C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771B47CC188176140082C3C7 /* Foundation.framework */; };
 		771B47CF188176140082C3C7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771B47CE188176140082C3C7 /* CoreGraphics.framework */; };
 		771B47D1188176140082C3C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771B47D0188176140082C3C7 /* UIKit.framework */; };
@@ -26,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77198B4718D8C46400D6E406 /* RKValueTransformer+InExtenstions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RKValueTransformer+InExtenstions.h"; sourceTree = "<group>"; };
+		77198B4818D8C46400D6E406 /* RKValueTransformer+InExtenstions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RKValueTransformer+InExtenstions.m"; sourceTree = "<group>"; };
 		771B47C9188176140082C3C7 /* RestkitExtensions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestkitExtensions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		771B47CC188176140082C3C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		771B47CE188176140082C3C7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -132,6 +135,8 @@
 		77B20F6518817B8900D76ECE /* InExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				77198B4718D8C46400D6E406 /* RKValueTransformer+InExtenstions.h */,
+				77198B4818D8C46400D6E406 /* RKValueTransformer+InExtenstions.m */,
 				77B20F6818817B8900D76ECE /* RKObjectMapping+InExtensions.h */,
 				77B20F6918817B8900D76ECE /* RKObjectMapping+InExtensions.m */,
 				77B20F6C18817C2900D76ECE /* RKObjectManager+InExtensions.h */,
@@ -183,7 +188,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = In;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Hernan Gabriel Gonzalez";
 			};
 			buildConfigurationList = 771B47C4188176130082C3C7 /* Build configuration list for PBXProject "RestkitExtensions" */;
@@ -257,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77198B4918D8C46400D6E406 /* RKValueTransformer+InExtenstions.m in Sources */,
 				77B20F6E18817C2900D76ECE /* RKObjectManager+InExtensions.m in Sources */,
 				771B47D9188176140082C3C7 /* main.m in Sources */,
 				77B20F7A1881B0B200D76ECE /* RKTUser.m in Sources */,
@@ -293,7 +299,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -332,7 +337,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

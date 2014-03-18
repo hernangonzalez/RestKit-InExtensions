@@ -49,7 +49,7 @@
     
     // GET Objects
     RKTUserStatus* userStatus = [[RKTUserStatus alloc] init];
-    [userStatus setUsername:@"RestKit"];
+    [userStatus setUsername:@"indebateam"];
     [objectManager getObject:userStatus
                         path:nil
                   parameters:nil

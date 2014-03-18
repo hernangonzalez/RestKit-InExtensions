@@ -12,10 +12,10 @@
 /**
  */
 + (RKObjectMapping*)responseMappingForClass:(Class)responseClass
-                               responseInfo:(NSDictionary *)dict;
+                               mappingInfo:(NSDictionary *)dict;
 /**
  otherwise return nil
  */
 + (RKObjectMapping *)requestMappingForClass:(Class)requestClass
-                                requestInfo:(NSDictionary *)dict;
+                                mappingInfo:(NSDictionary *)dict;
 @end

@@ -10,15 +10,16 @@
 #import <RKErrorMessage.h>
 #import <RestKit/Network.h>
 
-#define kRequestMapping @"request"
-#define kResponseMapping @"response"
-#define kStatusCode @"statusCode"
-#define kMappingClass @"class"
-#define kPathPattern @"pathPattern"
-#define kKeyPath @"keyPath"
-#define kMappingRoutes @"routes"
-#define kMappingRoute @"route"
-#define kHTTPMethod @"method"
+#define kRequestMapping     @"request"
+#define kResponseMapping    @"response"
+#define kMappingInfo        @"mapping"
+#define kStatusCode         @"statusCode"
+#define kMappingClass       @"class"
+#define kPathPattern        @"pathPattern"
+#define kKeyPath            @"keyPath"
+#define kMappingRoutes      @"routes"
+#define kMappingRoute       @"route"
+#define kHTTPMethod         @"method"
 
 @implementation RKObjectManager (InExtensions)
 
@@ -26,13 +27,17 @@
 {
     NSParameterAssert(mappingInfo);
     
+    NSDictionary* classMappings = [mappingInfo valueForKey:kMappingInfo];
+    
     // Request Descriptors
-	NSDictionary *requestMappings = [mappingInfo valueForKey:kRequestMapping];
-	[requestMappings enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *info, BOOL *stop)
+	NSArray *requestMappings = [mappingInfo valueForKey:kRequestMapping];
+	[requestMappings enumerateObjectsUsingBlock:^(NSDictionary* requestInfo, NSUInteger idx, BOOL *stop)
      {
-         Class mapClass = NSClassFromString(key);
-         RKObjectMapping *requestMapping = [RKObjectMapping requestMappingForClass:mapClass requestInfo:requestMappings];
-         NSString* httpMethod = [info objectForKey:kHTTPMethod];
+         Class mapClass = NSClassFromString([requestInfo valueForKey:kMappingClass]);
+         RKObjectMapping *requestMapping = [RKObjectMapping requestMappingForClass:mapClass mappingInfo:classMappings];
+         NSAssert(requestMapping, @"Missing object mapping");
+
+         NSString* httpMethod = [requestInfo objectForKey:kHTTPMethod];
          RKRequestMethod method = (httpMethod)? RKRequestMethodFromString(httpMethod) : RKRequestMethodAny;
          RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:requestMapping
                                                                                         objectClass:mapClass
@@ -42,23 +47,23 @@
      }];
     
     // Response Descriptors
-    NSDictionary* responseDescriptors = [mappingInfo valueForKey:kResponseMapping];
-	[responseDescriptors enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *info, BOOL *stop)
+    NSArray* responseDescriptors = [mappingInfo valueForKey:kResponseMapping];
+	[responseDescriptors enumerateObjectsUsingBlock:^(NSDictionary* responseInfo, NSUInteger idx, BOOL *stop)
      {
          // Class
-         Class mapClass = NSClassFromString(key);
-         RKObjectMapping* objMapping = [RKObjectMapping responseMappingForClass:mapClass responseInfo:responseDescriptors];
+         Class mapClass = NSClassFromString([responseInfo valueForKey:kMappingClass]);
+         RKObjectMapping* objMapping = [RKObjectMapping responseMappingForClass:mapClass mappingInfo:classMappings];
          NSAssert(objMapping, @"Missing object mapping");
          
          // Status code range
-         NSNumber* statusCodeClass = [info objectForKey:kStatusCode];
+         NSNumber* statusCodeClass = [responseInfo objectForKey:kStatusCode];
          NSIndexSet* statusCodes = (statusCodeClass)? RKStatusCodeIndexSetForClass([statusCodeClass integerValue])
                                                     : RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful);
          
          // Descriptor
-         NSString* pathPattern = [info objectForKey:kPathPattern];
-         NSString* keyPath = [info objectForKey:kKeyPath];
-         NSString* httpMethod = [info objectForKey:kHTTPMethod];
+         NSString* pathPattern = [responseInfo objectForKey:kPathPattern];
+         NSString* keyPath = [responseInfo objectForKey:kKeyPath];
+         NSString* httpMethod = [responseInfo objectForKey:kHTTPMethod];
          RKRequestMethod method = (httpMethod)? RKRequestMethodFromString(httpMethod) : RKRequestMethodAny;
          RKResponseDescriptor* descriptor = [RKResponseDescriptor responseDescriptorWithMapping:objMapping
                                                                                          method:method
@@ -87,6 +92,9 @@
      }];
 
     
+    
+    
 }
+
 
 @end

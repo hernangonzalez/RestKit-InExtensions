@@ -19,6 +19,7 @@
 {
     // Override point for customization after application launch.
     RKLogConfigureByName("RestKit/Network", RKLogLevelDebug);
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelDebug);
 
     //let AFNetworking manage the activity indicator
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
