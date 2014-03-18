@@ -1,1 +1,3 @@
 language: objective-c
+xcode_workspace: RestkitExtensions.xcworkspace # path to your xcodeproj folder
+xcode_scheme: RestkitExtensions
