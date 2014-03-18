@@ -1,6 +1,4 @@
-# RestKit Extensions
-
-[![Build Status](https://travis-ci.org/CocoaPods/Specs.png?branch=master)](https://travis-ci.org/CocoaPods/Specs)
+# RestKit Extensions [![Build Status](https://travis-ci.org/CocoaPods/Specs.png?branch=master)](https://travis-ci.org/CocoaPods/Specs)
 
 These categories are a set of extensions designed to help you get your networking code a bit more OOP.
 
@@ -54,6 +52,10 @@ Please look at the [sample file](RestkitExtensions/modelMapping.plist).
                       }];
 
 ```
+
+## TODO
+
+ * Add granularity to property mappings. (i.e. allow a param to be used inboud, and ignored on outbound)
 
 ## License
 
