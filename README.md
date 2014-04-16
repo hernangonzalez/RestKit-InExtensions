@@ -56,6 +56,7 @@ Please look at the [sample file](RestkitExtensions/modelMapping.plist).
 ## TODO
 
  * Add granularity to property mappings. (i.e. allow a param to be used inboud, and ignored on outbound)
+ * Add routes option to escape arguments.
 
 ## License
 
