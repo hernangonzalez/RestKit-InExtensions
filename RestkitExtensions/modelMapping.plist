@@ -65,17 +65,19 @@
 		</dict>
 	</array>
 	<key>routes</key>
-	<dict>
-		<key>RKTUserStatus</key>
+	<array>
 		<dict>
+			<key>class</key>
+			<string>RKTUserStatus</string>
 			<key>route</key>
 			<string>/status/user_timeline/:username</string>
 		</dict>
-		<key>RKTweet</key>
 		<dict>
+			<key>class</key>
+			<string>RKTweet</string>
 			<key>route</key>
 			<string>/trash</string>
 		</dict>
-	</dict>
+	</array>
 </dict>
 </plist>

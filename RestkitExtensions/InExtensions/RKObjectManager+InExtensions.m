@@ -19,6 +19,7 @@
 #define kKeyPath            @"keyPath"
 #define kMappingRoutes      @"routes"
 #define kMappingRoute       @"route"
+#define kMappingRouteName   @"name"
 #define kHTTPMethod         @"method"
 
 @implementation RKObjectManager (InExtensions)
@@ -76,24 +77,36 @@
     
     // Mapping routes
     RKRouter* router = [self router];
-    NSDictionary* routes = [mappingInfo valueForKey:kMappingRoutes];
-	[routes enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *info, BOOL *stop)
-     {
-         Class mapClass = NSClassFromString(key);
-         NSString* mapRoute = [info objectForKey:kMappingRoute];
-         NSString* httpMethod = [info objectForKey:kHTTPMethod];
-         RKRequestMethod requestMethod = (httpMethod)? RKRequestMethodFromString(httpMethod) : RKRequestMethodAny;
-         
-         RKRoute* route = [RKRoute routeWithClass:mapClass
-                                      pathPattern:mapRoute
-                                           method:requestMethod];
-         
-         [[router routeSet] addRoute:route];
-     }];
-
-    
-    
-    
+    NSArray* routes = [mappingInfo valueForKey:kMappingRoutes];
+    [routes enumerateObjectsUsingBlock:^(NSDictionary *info, NSUInteger idx, BOOL *stop)
+    {
+        NSString* httpMethod = [info objectForKey:kHTTPMethod];
+        NSString* routeName = [info objectForKey:kMappingRouteName];
+        NSString* mapRoute = [info objectForKey:kMappingRoute];
+        
+        RKRoute* route = nil;
+        if (routeName)
+        {
+            route = [RKRoute routeWithName:routeName
+                               pathPattern:mapRoute
+                                    method:RKRequestMethodFromString(httpMethod)];
+            
+        }
+        else
+        {
+            Class mapClass = NSClassFromString([info objectForKey:kMappingClass]);
+            RKRequestMethod requestMethod = (httpMethod)? RKRequestMethodFromString(httpMethod) : RKRequestMethodAny;
+            
+            route = [RKRoute routeWithClass:mapClass
+                                pathPattern:mapRoute
+                                     method:requestMethod];
+            
+        }
+        
+        
+        NSParameterAssert(route);
+        [[router routeSet] addRoute:route];
+    }];
 }
 
 
